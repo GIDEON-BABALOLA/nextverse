@@ -1,0 +1,4 @@
+20240509	15:30:50	6bd24671-a740-45e1-873d-ce692b2b5227	Error: secretOrPrivateKey must have a value
+20240509	15:36:51	00f02643-6e17-49ba-ab99-1ae57c59a3bf	Error: secretOrPrivateKey must have a value
+20240509	15:36:54	0116976d-9b3a-4d48-90fc-07fc08c481fb	Error: secretOrPrivateKey must have a value
+20240509	15:48:26	60137ee5-5490-4d6f-8985-8e477591e96c	userError: User Does Not Exist

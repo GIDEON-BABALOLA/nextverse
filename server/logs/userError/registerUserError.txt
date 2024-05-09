@@ -1,0 +1,18 @@
+20240509	14:34:18	2fd7d537-0029-4706-9c79-46cc5237d579	undefined: Please Fill In All The Fields
+20240509	14:35:10	88d7141d-ecf6-4d3a-8f6b-f7e35e312732	undefined: Please Fill In All The Fields
+20240509	14:35:11	73ad8ce2-34f5-4278-8b41-1ca8ab338b9e	undefined: Please Fill In All The Fields
+20240509	14:57:39	544f5657-dbf5-45e3-b2b0-0827058e7a48	ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.
+20240509	14:58:12	c2dba6fc-f300-4a91-8fb9-1616a537ef44	userError: Please Fill In All The Fields
+20240509	14:59:30	c0678731-22ab-4b6d-a613-7e7f53d50a80	ValidationError: User validation failed: role: `user` is not a valid enum value for path `role`.
+20240509	15:00:11	c9a9123e-76f3-4669-98a9-26585ae53b3e	userError: User Already Exists
+20240509	15:00:14	830f72b0-578b-49e8-aa68-50ebd1c343c8	userError: User Already Exists
+20240509	15:23:50	d32fd0fa-c07f-4f7e-94fc-4e4b1a8aa415	userError: Please Provide An Email And A Password
+20240509	15:23:53	3f166efd-b37b-4396-b6ce-6c0a43afa9af	userError: Please Provide An Email And A Password
+20240509	15:24:18	37d6b3d3-1503-428d-acf1-a4fa3b904f1c	userError: Invalid Credentials
+20240509	15:24:27	8ab31ea5-c913-4652-b296-8bd79de5a075	ReferenceError: foundStudent is not defined
+20240509	15:25:44	4c433959-15bc-4813-8988-81df221e66c3	Error: secretOrPrivateKey must have a value
+20240509	15:26:03	647b629c-4e52-4c52-9fe4-665799860c31	userError: User Does Not Exist
+20240509	15:26:35	4865d5ab-3b08-4dd1-8275-c8a75c722442	Error: secretOrPrivateKey must have a value
+20240509	15:27:04	516cba35-a42c-4161-af0e-6d57dd19b47b	Error: secretOrPrivateKey must have a value
+20240509	15:27:36	c2a8de38-464b-429b-b0f7-a5cbfa4fa5b9	Error: secretOrPrivateKey must have a value
+20240509	16:44:45	ab621dc7-1353-4952-9e49-59972b557894	userError: User Already Exists
