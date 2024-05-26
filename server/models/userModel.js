@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    mobile : {
+        type : String,
+        required : true,
+        unique : true
+    },
     accessToken : {
         type:String
     },
@@ -30,40 +35,80 @@ const userSchema = new mongoose.Schema({
         default : "user",
         required : true,
         enum : [ "user", "developer", "admin", "designer"]
+    },
+    ipAddress : {
+        type : String
+    },
+    verification : {
+        type : Boolean,
+        default : false
+    },
+    followers : [
+        {
+    followedby : {type : mongoose.Schema.Types.ObjectId, ref : "User"}
     }
-
+    ],
+    following : [
+        {
+    follows :  {type : mongoose.Schema.Types.ObjectId, ref : "User"}
+    }
+    ],
+    totalfollowing : {
+        type : Number,
+        default : 0
+    },
+    
+    totalfollowers : {
+        type : Number,
+        default : 0
+    },
+    stories : [
+        {
+    storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
+        }
+        ],
+    bookmarks : [
+        {type : mongoose.Schema.Types.ObjectId, ref : "Story"}
+    ]
+}, {
+    timestamps : true
 });
-// static signup method
-userSchema.statics.signup = async function(email, username, password, picture){
-    //this does not work with arrow functions
-    //this refers to the model we exported
-    if(!email || !password){
-        throw Error("All fields must be filled")
+class update{
+    constructor(params){
+        this.totalfollowers = params.followers.length,
+        this.totalfollowing = params.following.length
     }
-    const exists = await this.findOne({email})
-    if(exists){
-        throw Error("Email already in use")
-    }
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(password, salt)
-    const user = await this.create({email, password : hash, picture})
-    return user
 }
-//static Login Method
-userSchema.statics.login = async function(email, password){
-    if(!email || !password){
-        throw Error("All fields must be filled")
-    }
-    const user = await this.findOne({email})
-    if(!user){
-        throw Error("Incorrect Email")
-    }
-    const match = await bcrypt.compare(password, user.password)
-    if(!match){
-        throw Error("Incorrect Password")
-    }
-return user;
-}
+userSchema.statics.followuser = async function(userId, followId){
+  const follower  =    await this.findByIdAndUpdate(followId, {
+        $push: { followers: { followedby: userId } },
+      }, { new : true})
+    const following  =  await this.findByIdAndUpdate(userId, {
+        $push: { following: { follows: followId } },
 
-//Export the model
+      }, {new : true});
+    const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
+    await this.findByIdAndUpdate(following._id, new update(following), { new: true });
+return updatedFollower
+    
+}
+userSchema.statics.unfollowuser = async function(userId, followId){
+   const follower = await this.findByIdAndUpdate(followId, {
+        $pull: { followers: { followedby: userId } },
+      }, {new : true});
+    const following =  await this.findByIdAndUpdate(userId, {
+        $pull: { following: { follows: followId } },
+      }, { new : true});
+      const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
+      await this.findByIdAndUpdate(following._id, new update(following), { new: true });
+  return updatedFollower
+}
+userSchema.statics.createstory = async function(userId, storyId){
+     await this.findByIdAndUpdate(userId, {
+        $push: { stories: { storyId: storyId } },
+      }, { new : true})
+    }
 module.exports = mongoose.model('User', userSchema);
+
+
+

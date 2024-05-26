@@ -26,3 +26,16 @@
 20240509	16:43:32	852acc1e-12db-4624-94fb-be1d924cd211	JsonWebTokenError:invalid signature
 20240509	16:43:33	269de144-8978-4147-a3ba-1aeb43c435b9	JsonWebTokenError:invalid signature
 20240509	16:45:23	cd1c5057-111f-40c4-bc05-13502d3331f6	JsonWebTokenError:invalid signature
+20240511	16:43:48	3687b5f1-55f9-4185-ba98-ed88c21a90a2	JsonWebTokenError:jwt malformed
+20240511	16:43:51	dd708695-eddc-4b5d-9f77-bd52b4ea6383	JsonWebTokenError:jwt malformed
+20240511	16:43:52	4cd12ea0-7b0f-460c-a133-ac1c54b6030e	JsonWebTokenError:jwt malformed
+20240511	16:43:54	823f5a00-ddaf-49e1-b7fa-34439dcbb867	JsonWebTokenError:jwt malformed
+20240512	21:25:24	4d5271a4-e82c-494e-86fa-22f23eeac4e0	TokenExpiredError:jwt expired
+20240512	21:25:27	5efccb33-c49f-4586-9f11-97bd7ad96063	TokenExpiredError:jwt expired
+20240512	21:25:28	57bb7c14-385d-47fc-bde0-39df67daa16b	TokenExpiredError:jwt expired
+20240512	21:25:29	2e19a2cb-4304-4d9a-bc15-128b9a568b3c	TokenExpiredError:jwt expired
+20240515	10:55:47	4932a72e-752d-4ea9-ab5c-b602c0cd5fdc	TokenExpiredError:jwt expired
+20240515	10:55:49	dfa950e7-607f-40f2-8f1d-387d97610239	TokenExpiredError:jwt expired
+20240515	10:55:50	d1dbd583-04f6-4c29-91ca-4028e3cbb6a9	TokenExpiredError:jwt expired
+20240515	10:55:58	5c93e49e-a1e5-4596-b400-bc0125be64f2	TokenExpiredError:jwt expired
+20240515	10:55:59	ba967b57-865c-4fcb-8771-dfef88101cbc	TokenExpiredError:jwt expired

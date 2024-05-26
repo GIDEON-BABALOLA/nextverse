@@ -1,25 +1,10 @@
-const mongoose = require('mongoose'); // Erase if already required
-
-// Declare the Schema of the Mongo model
-const userSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true,
-        index:true,
-    },
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-    },
-    password:{
-        type:String,
-        required:true,
-    },
-    picture: {
-        type : String,
-        default : ""
+const mongoose = require("mongoose")
+const path = require("path")
+const {logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
+const validateMongoDbId = (id)=>{
+    const isValid = mongoose.Types.ObjectId.isValid(id);
+    if(!isValid){
+        logEvents(`This id is invalid`, "validMongoDbIdError.txt")
     }
-});
-//Export the model
-module.exports = mongoose.model('User', userSchema);
+}
+module.exports = validateMongoDbId;

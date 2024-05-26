@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const rateLimit = require('express-rate-limit')
 const { logEvents } = require(path.join(__dirname, "logEvents.js"))
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
 const Admin =  require(path.join(__dirname, "..", "models", "adminModel.js"))
@@ -21,7 +22,7 @@ const authMiddleware = async (req, res, next)=>{
     try{
         if(token){
             const decoded = jwt.verify(token, process.env.LIGHTNOTE_JWT_TOKEN_SECRET);
-            console.log(decoded)
+
             switch (decoded?.role) {
                 case "user":
                     const user = await User.findById(decoded?.id);
@@ -55,6 +56,14 @@ const authMiddleware = async (req, res, next)=>{
 return res.status(401).json({"message" : "No Authorization token in the request headers, You are not logged in"})
 }
 } 
+const bruteForceLimiter = rateLimit({
+	windowMs:  60 * 1000, // 1 minutes
+	limit: 5, // Limit each IP to 5 requests per `window` (here, per 1 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	handler: (req, res, next, options) =>
+		res.status(options.statusCode).json({message : "You Have Tried Incorrect Combinations Many Time, Pls Wait For A Minute"}),
+})
 const isAdministrator = async (req, res, next) => {
     if(req.user.role === "admin"){
         next()  
@@ -63,12 +72,28 @@ const isAdministrator = async (req, res, next) => {
         return res.status(404).json({"message" : "You are not an admin", "success": false})
     }
 }
-const isLecturer = async (req, res, next) => {
-    if(req.user.role === "lecturer"){
+const isDeveloper = async (req, res, next) => {
+    if(req.user.role === "developer"){
         next()  
     }
     else{
-        return res.status(404).json({"message" : "You are not a lecturer", "success": false})
+        return res.status(404).json({"message" : "You are not a Developer For Lightnote", "success": false})
     }
 }
-module.exports = { authMiddleware, isAdministrator, isLecturer }
+const isDesigner = async (req, res, next) => {
+    if(req.user.role === "designer"){
+        next()  
+    }
+    else{
+        return res.status(404).json({"message" : "You are not a Product Designer For Lightnote", "success": false})
+    }
+}
+const isUser = async (req, res, next) => {
+    if(req.user.role === "user"){
+        next()  
+    }
+    else{
+        return res.status(404).json({"message" : "You are not a User", "success": false})
+    }
+}
+module.exports = { authMiddleware, isAdministrator, isDeveloper, isDesigner, isUser, bruteForceLimiter }
