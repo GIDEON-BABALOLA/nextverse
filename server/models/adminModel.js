@@ -38,8 +38,99 @@ const adminSchema = new mongoose.Schema({
     },
     ipAddress : {
         type : String
+    },
+    verification : {
+        type : Boolean,
+        default : false
+    },
+    followers : [
+        {
+    followedby : {type : mongoose.Schema.Types.ObjectId, ref : "User"}
     }
+    ],
+    following : [
+        {
+    follows :  {type : mongoose.Schema.Types.ObjectId, ref : "User"}
+    }
+    ],
+    totalfollowing : {
+        type : Number,
+        default : 0
+    },
+    
+    totalfollowers : {
+        type : Number,
+        default : 0
+    },
+    stories : [
+        {
+    storyId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
+        }
+        ],
+    bookmarks : [
+        {
+    bookmarkId :  {type : mongoose.Schema.Types.ObjectId, ref: "Story"}
+        }
+    ]
 }, {
     timestamps : true
 });
+class update{
+    constructor(params){
+        this.totalfollowers = params.followers.length,
+        this.totalfollowing = params.following.length
+    }
+}
+adminSchema.statics.followuser = async function(adminId, followId){
+  const follower  =    await this.findByIdAndUpdate(followId, {
+        $push: { followers: { followedby: adminId } },
+      }, { new : true})
+    const following  =  await this.findByIdAndUpdate(adminId, {
+        $push: { following: { follows: followId } },
+
+      }, {new : true});
+    const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
+    await this.findByIdAndUpdate(following._id, new update(following), { new: true });
+return updatedFollower
+    
+}
+adminSchema.statics.unfollowuser = async function(adminId, followId){
+   const follower = await this.findByIdAndUpdate(followId, {
+        $pull: { followers: { followedby: adminId } },
+      }, {new : true});
+    const following =  await this.findByIdAndUpdate(adminId, {
+        $pull: { following: { follows: followId } },
+      }, { new : true});
+      const updatedFollower = await this.findByIdAndUpdate(follower._id, new update(follower), { new: true });
+      await this.findByIdAndUpdate(following._id, new update(following), { new: true });
+  return updatedFollower
+}
+adminSchema.statics.createstory = async function(adminId, storyId){
+     await this.findByIdAndUpdate(adminId, {
+        $push: { stories: { storyId: storyId } },
+      }, { new : true})
+    }
+adminSchema.statics.bookmarkStory = async function(adminId, bookmarkId){
+        const admin = await this.findById(adminId)
+      let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString())
+      if(alreadyBookmarked){
+        return;
+      }else{
+        await this.findByIdAndUpdate(adminId, {
+            $push: { bookmarks: { bookmarkId: bookmarkId } },
+          }, { new : true})
+        }
+      }
+adminSchema.statics.unbookmarkStory = async function(adminId, bookmarkId){
+        const admin = await this.findById(adminId);
+        let alreadyBookmarked = admin.bookmarks.find((bookmark) => bookmark.bookmarkId.toString() === bookmarkId.toString());
+        if(!alreadyBookmarked){
+            return;
+        } else {
+            await this.findByIdAndUpdate(adminId, {
+                $pull: { bookmarks: { bookmarkId: bookmarkId } },
+            }, { new: true });
+        }
+    }
+    
 module.exports = mongoose.model('Admin', adminSchema);

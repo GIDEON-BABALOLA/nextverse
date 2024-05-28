@@ -1,6 +1,24 @@
 const mongoose = require('mongoose'); // Erase if already required
 
-// Declare the Schema of the Mongo model
+const commentSchema = new mongoose.Schema({
+    comment: {
+        type: String,
+        required: true,
+    },
+    commentBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+}, { timestamps: true });
+
+const likeSchema = new mongoose.Schema({
+    likedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+}, { timestamps: true });
 const storySchema = new mongoose.Schema({
     author:{
         type:String,
@@ -28,7 +46,14 @@ const storySchema = new mongoose.Schema({
         default : "NGN"
     },
     estimatedReadingTime : {
-        type : String
+        minutes: {
+            type: String,
+            required: true
+        },
+        seconds: {
+            type: String,
+            required: true
+        }
     },
     caption:{
         type:String,
@@ -44,8 +69,18 @@ const storySchema = new mongoose.Schema({
         enum : ["fiction", "non-fiction", "romance", "adventure", "memoir"]
     },
     date : {
-        type : String,
-        required : true,
+        month: {
+            type: String,
+            required: true
+        },
+        year: {
+            type: String,
+            required: true
+        },
+        day : {
+            type : String,
+            required : true
+        }
     },
     userId : {
         type : String,
@@ -61,18 +96,8 @@ const storySchema = new mongoose.Schema({
             message: props => `The array exceeds the maximum allowed length (10).`
         }
     },
-    comments : [
-        {
-        comment : String,
-        commentby : {type : mongoose.Schema.Types.ObjectId, ref : "User"}
-        }
-    ],
-    likes : [
-        {
-        likes : Number,
-        likedby : {type : mongoose.Schema.Types.ObjectId, ref : "User"}
-    }
-],
+    comments : [commentSchema],
+    likes : [likeSchema],
     totallikes : {
     type : String,
     default : 0
@@ -86,11 +111,22 @@ const storySchema = new mongoose.Schema({
 }, {
     timestamps : true
 });
-storySchema.statics.createstory = async function(userId, storyId){
-    const story =    await this.findByIdAndUpdate(userId, {
-        $push: { stories: { writtenby: userId } },
-      }, { new : true})
-}
+
+storySchema.methods.addComment = async function (comment, userId) {
+    this.comments.push({ comment, commentBy: userId });
+    this.totalComments = this.comments.length;
+    await this.save();
+    return this;
+};
+
+storySchema.methods.addLike = async function (userId) {
+    if (!this.likes.some(like => like.likedBy.toString() === userId.toString())) { //.some works just like .find
+        this.likes.push({ likedBy: userId });
+        this.totalLikes = this.likes.length;
+        await this.save();
+    }
+    return this;
+};
 
 
 //Export the model

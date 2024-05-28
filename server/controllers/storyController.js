@@ -2,6 +2,7 @@ const path = require("path");
 const { logEvents } = require(path.join(__dirname, "..", "middlewares", "logEvents.js"))
 const fs = require('fs');
 const User = require(path.join(__dirname, "..", "models", "userModel.js"))
+const Admin = require(path.join(__dirname, "..", "models", "adminModel.js"))
 const Story = require(path.join(__dirname, "..", "models", "storyModel.js"))
 const _ = require('lodash');
 const slugify = require("slugify")
@@ -9,6 +10,7 @@ const { cloudinaryError, userError } = require("../utils/customError");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
+console.log(countWordsAndEstimateReadingTime)
 const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 // To Create A New Story
@@ -49,6 +51,7 @@ fs.unlinkSync(path)
 //number of words in the story
 // According to research, the average reading speed for adults is around 200-250 words per minute, but this can vary depending on factors such as age and reading experience.
 const time = countWordsAndEstimateReadingTime(content)
+
     const newStory = {
         author : req.user.username,
         userId : id,
@@ -58,12 +61,21 @@ const time = countWordsAndEstimateReadingTime(content)
         content : content,
         category,
         picture : urls,
-        estimatedReadingTime : `${time.minutes} minutes ${time.seconds} seconds read`,
-        date : `${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`
+        estimatedReadingTime : time,
+        date : { month : month[datetime.getMonth()], year :datetime.getFullYear(), day : datetime.getDate()} 
     }
     const story = await Story.create(newStory)
-    await User.createstory(req.user._id, story._id);
-    res.status(201).json(story)
+    switch (req.user.role) {
+        case "user":
+            await User.createstory(req.user._id, story._id);
+            break;
+        case "admin":
+            await Admin.createstory(req.user._id, story._id);
+    }
+    const {estimatedReadingTime, date, ...rest} = newStory
+    res.status(201).json({...rest, estimatedReadingTime :`${time.minutes} minutes ${time.seconds} seconds read`,
+    date : `${month[datetime.getMonth()]} ${datetime.getDate()} ${datetime.getFullYear()}`
+ })
 }catch(error){
     logEvents(`${error.name}: ${error.message}`, "createStoryError.txt", "storyError")
     if (error instanceof userError) {
@@ -162,11 +174,26 @@ const getAllStories = async (req, res) => {
 const queryObj = {...req.query}
 const excludeFields = ["page", "sort", "limit", "fields"]
 excludeFields.forEach((el) => delete queryObj[el])
+   // Handle date filtering specifically
+   let dateFilter = {};
+   if (queryObj.year) {
+       dateFilter['date.year'] = queryObj.year;
+       delete queryObj.year;
+   }
+   if (queryObj.month) {
+       dateFilter['date.month'] = queryObj.month;
+       delete queryObj.month;
+   }
+   if (queryObj.day) {
+       dateFilter['date.day'] = queryObj.day;
+       delete queryObj.day;
+   }
 let queryString;
 queryString = JSON.stringify(queryObj)
 queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
 let query;
-query = Story.find(JSON.parse(queryString))
+ // Combine the query object and date filter
+query = Story.find({...JSON.parse(queryString), ...dateFilter})
 //Sorting, arrangement of the data you want 
 if(req.query.sort){
     const sortBy = req.query.sort.split(",").join(" ")
@@ -238,12 +265,97 @@ res.status(201).json(updateStory)
     }
 
 }
-const filterAllStoriesByCategories = async(req, res) => {
+const commentAStory = async (req, res) => {
+    const { id } = req.params;  // The story ID
+    const { comment } = req.body;  // The comment text
 
-}
-const filterAllStoriesByDate = async(req, res) => {
+    validateMongoDbId(id);  // Ensure the ID is a valid MongoDB ObjectID
 
+    try {
+        // Add the comment to the story using static method
+        const story = await Story.addComment(id, comment, req.user._id);
+        
+        // Respond with the updated story
+        res.status(201).json(story);
+    } catch (error) {
+        console.log(error);
+        logEvents(`${error.name}: ${error.message}`, "addCommentToStoryError.txt", "storyError");
+
+        if (error instanceof userError) {
+            return res.status(error.statusCode).json({ error: error.message });
+        } else {
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
+    }
+};
+
+const likeAStory = async(req, res) => {
+    const { id } = req.params
+    validateMongoDbId(id);
+try{
+  // Add the like to the story using static method
+  const story = await Story.addLike(id, req.user._id);
+        
+  // Respond with the updated story
+  res.status(200).json(story);
+}catch(error){
+    console.log(error);
+    logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
+
+    if (error instanceof userError) {
+        return res.status(error.statusCode).json({ error: error.message });
+    } else {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 }
+}
+//To Bookmark A Story
+const bookmarkAStory = async (req, res) => {
+    const { id } = req.params;
+    validateMongoDbId(id)
+    try{
+const storyToBeBookmarked = await Story.findById(id)
+switch (req.user.role) {
+    case "user":
+        await User.bookmarkStory(req.user._id, storyToBeBookmarked._id)
+        break;
+    case "admin":
+        await Admin.bookmarkStory(req.user._id, storyToBeBookmarked._id)
+}
+res.status(201).json(storyToBeBookmarked)
+    }catch(error){
+
+        logEvents(`${error.name}: ${error.message}`, "bookmarkAStoryError.txt", "storyError")
+        if (error instanceof userError) {
+            return  res.status(error.statusCode).json({ error : error.message})
+            }
+             else{
+            return res.status(500).json({error : "Internal Server Error"})
+ }
+    }
+}
+const unBookmarkAStory = async (req, res) => {
+    const { id } = req.params;
+    validateMongoDbId(id);
+    try {
+        const storyToBeUnbookmarked = await Story.findById(id);
+        switch (req.user.role) {
+            case "user":
+                await User.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);
+                break;
+            case "admin":
+                await Admin.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);
+        }
+        res.status(201).json(storyToBeUnbookmarked);
+    } catch (error) {
+        logEvents(`${error.name}: ${error.message}`, "unbookmarkAStoryError.txt", "storyError");
+        if (error instanceof userError) {
+            return res.status(error.statusCode).json({ error: error.message });
+        } else {
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
+    }
+};
 
 //To Delete A Story
 const deleteAStory = async(req, res) => {
@@ -275,7 +387,9 @@ module.exports = {
     getAllStories,
     updateAStory,
     deleteAStory,
-    filterAllStoriesByCategories,
-    filterAllStoriesByDate,
-    uploadStoryPicture
+    uploadStoryPicture,
+    bookmarkAStory,
+    unBookmarkAStory,
+    likeAStory,
+    commentAStory
 }
