@@ -53,7 +53,7 @@ const authMiddleware = async (req, res, next)=>{
     }
     //659efb572e740fbc683e648a
 }else{
-return res.status(401).json({"message" : "No Authorization token in the request headers, You are not logged in"})
+return res.status(401).json({"error" : "No Authorization token in the request headers, You are not logged in"})
 }
 } 
 const bruteForceLimiter = rateLimit({

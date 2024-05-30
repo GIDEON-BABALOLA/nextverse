@@ -9,11 +9,15 @@ const {
     deleteAStory,
     uploadStoryPicture,
     bookmarkAStory,
-    unBookmarkAStory
+    unBookmarkAStory,
+    likeAStory,
+    commentAStory
 } = require(path.join(__dirname, "..", "controllers", "storyController.js"))
 const { authMiddleware } = require(path.join(__dirname, "..", "middlewares", "authMiddleware.js"))
 const { uploadMiddleware } = require(path.join(__dirname, "..", "middlewares", "uploadImages.js"))
 router.post("/create-story", authMiddleware, uploadMiddleware, createStory)
+router.post("/comment-a-story/:id", authMiddleware, commentAStory)
+router.put("/like-a-story/:id", authMiddleware, likeAStory)
 router.put("/update-a-story/:id", authMiddleware,  updateAStory)
 router.put("/upload-story-picture/:id",  authMiddleware, uploadMiddleware,  uploadStoryPicture)
 router.get("/get-a-story/:id", authMiddleware,   getAStory)

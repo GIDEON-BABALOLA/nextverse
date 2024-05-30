@@ -1,4 +1,4 @@
-const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"]
+const allowedOrigins = ["http://localhost:3000", "http://localhost:5173", "https://litenote.vercel.app"]
 const corsOptions = {
   origin: function (origin, callback) {
         // use !origin during development and not during production

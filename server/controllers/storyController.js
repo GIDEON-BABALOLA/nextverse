@@ -10,7 +10,6 @@ const { cloudinaryError, userError } = require("../utils/customError");
 const validateMongoDbId = require(path.join(__dirname, "..", "utils", "validateMongoDBId.js"))
 const  {cloudinaryUpload, cloudinaryDelete, cloudinarySingleDelete } = require(path.join(__dirname, "..", "utils", "cloudinary.js"))
 const { countWordsAndEstimateReadingTime } = require(path.join(__dirname, "..", "utils", "countWordsAndEstimateReadingTime.js"))
-console.log(countWordsAndEstimateReadingTime)
 const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 // To Create A New Story
@@ -268,15 +267,14 @@ res.status(201).json(updateStory)
 const commentAStory = async (req, res) => {
     const { id } = req.params;  // The story ID
     const { comment } = req.body;  // The comment text
-
     validateMongoDbId(id);  // Ensure the ID is a valid MongoDB ObjectID
-
     try {
+        const story = await Story.findById(id);
         // Add the comment to the story using static method
-        const story = await Story.addComment(id, comment, req.user._id);
+        const commentedStory = await story.addComment( comment, req.user._id);
         
         // Respond with the updated story
-        res.status(201).json(story);
+        res.status(201).json(commentedStory);
     } catch (error) {
         console.log(error);
         logEvents(`${error.name}: ${error.message}`, "addCommentToStoryError.txt", "storyError");
@@ -293,11 +291,12 @@ const likeAStory = async(req, res) => {
     const { id } = req.params
     validateMongoDbId(id);
 try{
+    const story = await Story.findById(id);
   // Add the like to the story using static method
-  const story = await Story.addLike(id, req.user._id);
+ const likedStory = await story.addLike(id, req.user._id);
         
   // Respond with the updated story
-  res.status(200).json(story);
+  res.status(201).json(likedStory);
 }catch(error){
     console.log(error);
     logEvents(`${error.name}: ${error.message}`, "addLikeToStoryError.txt", "storyError");
@@ -315,6 +314,9 @@ const bookmarkAStory = async (req, res) => {
     validateMongoDbId(id)
     try{
 const storyToBeBookmarked = await Story.findById(id)
+if(!storyToBeBookmarked){
+    throw new userError("This story does not exist", 400)
+}
 switch (req.user.role) {
     case "user":
         await User.bookmarkStory(req.user._id, storyToBeBookmarked._id)
@@ -339,6 +341,9 @@ const unBookmarkAStory = async (req, res) => {
     validateMongoDbId(id);
     try {
         const storyToBeUnbookmarked = await Story.findById(id);
+        if(!storyToBeUnBookmarked){
+            throw new userError("This story does not exist", 400)
+        }
         switch (req.user.role) {
             case "user":
                 await User.unbookmarkStory(req.user._id, storyToBeUnbookmarked._id);

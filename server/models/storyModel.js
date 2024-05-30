@@ -10,15 +10,15 @@ const commentSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-}, { timestamps: true });
+});
 
 const likeSchema = new mongoose.Schema({
     likedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
-    },
-}, { timestamps: true });
+    }
+});
 const storySchema = new mongoose.Schema({
     author:{
         type:String,
@@ -98,11 +98,11 @@ const storySchema = new mongoose.Schema({
     },
     comments : [commentSchema],
     likes : [likeSchema],
-    totallikes : {
+    totalLikes : {
     type : String,
     default : 0
     },
-    totalcomments : {
+    totalComments : {
     type : String,
     default : 0
     }
