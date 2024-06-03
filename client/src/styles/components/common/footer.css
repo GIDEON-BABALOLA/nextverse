@@ -18,7 +18,10 @@ footer {
     margin-left: 20px;
     transition: color 0.3s;
   }
-  
+  .footer-social-icons{
+    padding-left: 7%;
+    padding-right: 7%;
+  }
   .social-links a:hover {
     color: #ff5e62;
   }

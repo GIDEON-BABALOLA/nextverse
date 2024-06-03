@@ -3,14 +3,18 @@
     --white: #ded4d4;
     --green: rgba(0, 0, 0, 0.3);
   }
+  
+  
 .notfound-body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Nunito Sans";
+    font-family: "poppins";
     color: var(--blue);
     font-size: 1em;
     background-image: linear-gradient(to right, #ff9966, #ff5e62);
+    width: 100%;
+    height: 100vh;
 }
 .social-icons{
     display: flex;
@@ -18,12 +22,18 @@
     margin-top: 4%;
   }
   .four-o-four{
-    padding: 1%;
+    padding: 1.5%;
+
   }
-  
+  .notfound-ul {
+    list-style-type: none;
+    -webkit-padding-start: 35px;
+            padding-inline-start: 35px;
+  }
   .notfound-svg{
     width: 100%;
-    visibility: hidden;
+    /* visibility: hidden */;
+
   }
   .notfound-h1 {
     font-size: 7.5em;
@@ -41,44 +51,6 @@
     padding: 35px;
     z-index: 2;
   }
-  .notfound-hamburger-menu-button {
-    position: relative;
-    width: 30px;
-    height: 22px;
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  .hamburger-menu button span {
-    position: absolute;
-    height: 3px;
-    background: #000;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    transition: 0.1s ease-in;
-  }
-  .hamburger-menu button span:nth-child(2) {
-    top: 9px;
-  }
-  .hamburger-menu button span:nth-child(3) {
-    top: 18px;
-  }
-  .hamburger-menu [data-state=open] span:first-child {
-    transform: rotate(45deg);
-    top: 10px;
-  }
-  .hamburger-menu [data-state=open] span:nth-child(2) {
-    width: 0%;
-    opacity: 0;
-  }
-  .hamburger-menu [data-state=open] span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: 10px;
-  }
-  
-
   .notfound-nav {
   position: absolute;
   height: 100%;
@@ -132,13 +104,41 @@
   transform: translateX(0px);
   opacity: 1;
 }
+.notfound-home-button {
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    padding: 8px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 2px;
+    transition: 0.2s ease;
+    font-weight: bold;
+    margin: 5px 0px;
+  }
+  .notfound-home-button {
+    border: 4px solid var(--green);
+    color: var(--blue);
+  }
+  
+  @keyframes zoom {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.5);
+    }
+  }
+  
   @media screen and (max-width: 768px) {
     .notfound-body {
       display: block;
+      height: 100vh;
     }
   
     .notfound-container {
-      margin-top: 70px;
       margin-bottom: 70px;
     }
   }

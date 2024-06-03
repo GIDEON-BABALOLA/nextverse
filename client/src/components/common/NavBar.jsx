@@ -1,22 +1,33 @@
 import "../../styles/components/common/navbar.css"
+import {  Link } from 'react-router-dom'
 const NavBar = () => {
   return (
 <>
-<header>
-    <nav className="notfound-nav">
+<header className="navbar-header">
+    <nav className="navbar-nav-navbar">
       
-      <div className="logo">
-        <a href="#">Lite Note</a>
+      <div className="navbar-logo">
+        <Link to="/" className="navbar-header-links">Lite Note</Link>
       </div>
       
-      <div className="nav-links">
-        <a href="#" className="active">Home</a>
-        <a href="submit.html">Publish</a>
-        <a href="browse.html">Browse</a>
-        <a href="profile.html">Profile</a>
+      <div className="navbar-nav-links">
+      <Link to="/" className="navbar-header-links navbar-active">
+        Home
+        </Link>
+        <Link to="/publish" className="navbar-header-links">
+        Publish
+        </Link>
+        <Link to="/browse" className="navbar-header-links">
+        Browse
+        </Link>
+        <Link to="/profile" className="navbar-header-links">
+        Profile
+        </Link>
+     
       </div>
     </nav>
   </header>
+
 </>
   )
 }

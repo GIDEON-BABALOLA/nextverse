@@ -1,16 +1,17 @@
 import "../../styles/components/common/footer.css"
+import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa";
 const Footer = () => {
   return (
   <>
     <footer>
     <div className="footer-content">
       <div className="logo">
-        <a href="#">Lite Note</a>
+
       </div>
       <div className="social-links">
-        <a href="#"><i className="fab fa-facebook"></i></a>
-        <a href="#"><i className="fab fa-twitter"></i></a>
-        <a href="#"><i className="fab fa-instagram"></i></a>
+      <FaFacebookSquare  className="footer-social-icons" size={30}/>
+      <FaTwitter  className="footer-social-icons" size={30}/>
+      <FaInstagram  className="footer-social-icons" size={30}/>
       </div>
     </div>
     <p>&copy; 2024 Next Verse. All rights reserved.</p>

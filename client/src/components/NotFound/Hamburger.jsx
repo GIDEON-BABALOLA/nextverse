@@ -1,17 +1,16 @@
-
-
-const Hamburger = () => {
+import { useState} from "react"
+import Hamburger from 'hamburger-react'
+const HamBurger = ({ nav}) => {
+  const triggerMenu = () => {
+    nav.current.dataset.state === "closed" ? nav.current.dataset.state = "open" : nav.current.dataset.state = "closed";
+  }
   return (
 <>
 <div className="notfound-hamburger-menu">
-  <button className="burger notfound-hamburger-menu-button" data-state="closed">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+<Hamburger onToggle={triggerMenu}/>
 </div>
 </>
   )
 }
 
-export default Hamburger
+export default HamBurger

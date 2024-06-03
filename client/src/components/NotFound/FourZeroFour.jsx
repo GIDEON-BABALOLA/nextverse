@@ -1,3 +1,5 @@
+
+import { Link } from 'react-router-dom'
 const FourZeroFour = () => {
   return (
    <>
@@ -7,7 +9,9 @@ const FourZeroFour = () => {
           How you got here is a mystery. But you can click the button below
           to go back to the homepage.
         </p>
-        <button className="btn green">HOME</button> 
+        <Link to="/">
+        <button className="notfound-btn notfound-home-button">HOME</button> 
+        </Link>
    </>
   )
 }

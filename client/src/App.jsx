@@ -3,14 +3,22 @@ import { Route, Routes } from "react-router-dom";
 import Layout from './components/common/Layout';
 import Home from './Pages/Home';
 import NotFound from "./Pages/NotFound"
+import Publish from './Pages/Publish';
+import LoginPage from './Pages/Login';
+import RegisterPage from './Pages/Register';
+import ProfilePage from './Pages/Profile';
 function App() {
   return (
     <>
 <Routes>
   <Route path="/" element={<Layout/>}>
 <Route index element={<Home />} />
-<Route  path="*" element={<NotFound />}/>
+<Route path="publish" element={<Publish />} />
+<Route path="profile" element={< ProfilePage/>}/>
   </Route>
+  <Route path="login" element={<LoginPage />} />
+<Route path="register" element={<RegisterPage />} />
+  <Route  path="*" element={<NotFound/>}/>
 </Routes>
     </>
   )

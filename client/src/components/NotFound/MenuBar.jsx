@@ -1,23 +1,40 @@
 
-const MenuBar = () => {
+import { useRef, useEffect } from "react"
+import { FaInstagram, FaTwitter, FaFacebookSquare, FaLinkedin  } from "react-icons/fa";
+import {  Link  } from 'react-router-dom'
+const MenuBar = ({ nav, setNav}) => {
+  const navbar = useRef()
+  useEffect(() => {
+    setNav(navbar)
+  }, [setNav])
+  
   return (
   <>
-    <nav data-state="closed">
-  <ul>
+    <nav data-state="closed" ref={nav} className="notfound-nav">
+  <ul className="notfound-ul">
   <li>
-    <a href="#">Home</a>
+  <Link to="/">
+        Home
+        </Link>
   </li>
   <li>
-    <a href="#">Profile</a>
+  <Link to="/profile">
+        Profile
+        </Link>
   </li>
   <li>
-    <a href="#">Browse</a>
+  <Link to="/browse">
+        Browse
+        </Link>
   </li>
   <li>
     <div className="social-icons">
-      <i className="fa-brands fa-instagram fa-xl four-o-four"></i>
-      <i className="fa-brands fa-x-twitter fa-xl four-o-four"></i>
-      <i className="fa-brands fa-square-facebook fa-xl four-o-four"></i>
+    <FaInstagram  className="four-o-four fa-xl" size={30}/>
+      <FaTwitter className="four-o-four" size={30}/>
+      <FaFacebookSquare className="four-o-four" size={30}/>
+      <FaLinkedin  className="four-four" size={30}/>
+
+
     </div>
   </li>
   </ul>
