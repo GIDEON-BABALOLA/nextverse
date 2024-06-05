@@ -1,5 +1,9 @@
+import {  useState } from "react";
+import ContextMenu from "../common/ContextMenu";
 import { FaShareAlt } from "react-icons/fa";
-const StoryCard = () => {
+import { FaEllipsisH,  FaBookmark } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
+const StoryCard = ({ fireClick}) => {
   const dummyData = [
     {
       title: "Exploring the Hidden Gems of Italy",
@@ -74,7 +78,9 @@ const StoryCard = () => {
               <div className="litenote-profile-story-content">
                 <h4 className="litenote-profile-story-title">{story.title}</h4>
                 <p className="litenote-profile-story-category">{story.category}</p>
-                <FaShareAlt className="litenote-profile-read-more-share" />
+                <FaEllipsisH  className="litenote-profile-read-more-share"  onClick={fireClick}/>
+              
+                
               
                 <a href={story.link} className="litenote-profile-read-more">Read More</a>
              

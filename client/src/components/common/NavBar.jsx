@@ -1,8 +1,10 @@
 import "../../styles/components/common/navbar.css"
 import {  Link } from 'react-router-dom'
+import Headroom from "react-headroom"
 const NavBar = () => {
   return (
 <>
+<Headroom >
 <header className="navbar-header">
     <nav className="navbar-nav-navbar">
       
@@ -27,6 +29,8 @@ const NavBar = () => {
       </div>
     </nav>
   </header>
+</Headroom>
+
 
 </>
   )

@@ -2,11 +2,64 @@ import Avatar from "./Avatar"
 import Bio from "./Bio"
 import Stats from "./Stats"
 import StoryCard from "./StoryCard"
+import Share from "../common/Share"
+import { useState, useRef, useEffect} from "react"
+import ContextMenu from "../common/ContextMenu"
+import useWindowSize from "../../hooks/useWindowSize"
+import { FaShareAlt } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 const Profile = () => {
-  const username = "Gideon"
+const {width, height} = useWindowSize()
+const [contextMenu, setContextMenu] = useState()
+const fireClick = (e) => {
+updateMenuPosition(e.clientX, e.clientY)
+contextMenu.current.style.visibility = "visible"
+  // shareModal.current.showModal()
+  }
+  const updateMenuPosition = (x, y) => {
+const maxTopValue = height - contextMenu.current.offsetHeight;
+const maxLeftValue = width - contextMenu.current.offsetWidth; 
+contextMenu.current.style.left = `${Math.min(maxLeftValue, x)}px`;
+contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`; 
+  };
+const [shareModal, setShareModal] = useState()
+  const username = "Chris"
+  const shareRef = useRef()
+  useEffect(() => {
+    setShareModal(shareRef)
+  }, [setShareModal])
+    const closeContextMenu  = (e) => {
+      if( e.clientX < parseInt(contextMenu.current.style.left) || e.clientX > parseInt(contextMenu.current.style.left) + contextMenu.current.offsetWidth )
+      {
+        contextMenu.current.style.visibility = "hidden";
+      }else if(
+        e.clientY < parseInt(contextMenu.current.style.top) || e.clientY > parseInt(contextMenu.current.style.top) + contextMenu.current.offsetHeight
+      ){
+        contextMenu.current.style.visibility = "hidden";
+      }
+  }
+  useEffect(() => {
+    if (contextMenu) {
+      console.log("okay")
+      window.addEventListener('scroll', () => {
+        contextMenu.current.style.visibility = "hidden";
+      });
+    }
+
+    return () => {
+      if (contextMenu) {
+        window.removeEventListener('scroll', () => {
+          contextMenu.current.style.visibility = "hidden";
+        });
+      }
+    };
+  }, [contextMenu]);
+
   return (
     <>
-        <section className="litenote-profile-user-profile">
+        <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
+        <Share  share={shareRef} shareModal={shareModal}/>
   <div className="litenote-profile-container">
     <div className="litenote-profile-header">
    <Avatar />
@@ -21,7 +74,17 @@ const Profile = () => {
       <h3 className="litenote-profile-section-title">{`${username}`} Stories</h3>
       <div className="litenote-profile-stories-grid">
         {/* Dynamically generate user's stories here  */}
-       <StoryCard />
+       <StoryCard  shareModal={shareModal} fireClick={fireClick}/>
+       <ContextMenu
+                  setContextMenu={setContextMenu}
+                  contextMenuData={[
+                  {id : 1, icon : <FaShareAlt />
+                  , label : "Share"},
+                  {id : 2, icon : <FaBookmark />
+                  , label : "Bookmark"},
+                  {id : 3, icon : <FaTimes />
+                  , label : "Close"}
+]} />
          {/* Add more story cards as needed  */}
       </div>
     </div>

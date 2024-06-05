@@ -1,6 +1,7 @@
   .litenote-profile-user-profile {
     padding: 60px 20px;
     overflow-x: hidden;
+    overflow-y: auto;
   }
   
   .litenote-profile-container {
@@ -8,7 +9,22 @@
     margin: 0 auto;
     padding: 0 20px;
   }
-  
+.checkbot{
+  position: relative;
+  display : inline-flex;
+  margin : 0.5%;
+}
+.checkman{
+  position: absolute;
+  top : 27%;
+  right: 25%;
+  z-index: 1;
+  color: white;
+  transform-origin: center;
+  /* width: 12px !important;
+  height: 12px !important; */
+
+}
   .litenote-profile-header {
     display: flex;
     align-items: center;
@@ -149,6 +165,8 @@
     background-color:white;
     color:  #ff5e62;;
   }
+ 
+  
   
   @keyframes fade-in {
     0% {
@@ -178,5 +196,9 @@
   
     .litenote-profile-image {
       margin-right: 0;
+    }
+    .checkman{
+      top : 24%;
+      right: 24%;
     }
   }

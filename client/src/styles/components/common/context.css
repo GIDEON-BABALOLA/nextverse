@@ -1,0 +1,14 @@
+
+.litenote-context-link{
+    list-style-type: none;
+    padding: 0.75em 1em;
+    font-size: 0.85em;
+    font-family: "Inter" sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+}
+.litenote-context-link:hover{
+    background: #eeeeee;
+}

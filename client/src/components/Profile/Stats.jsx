@@ -1,4 +1,5 @@
 import Counter from "./Counter"
+import CountUp from 'react-countup';
 const Stats = () => {
   return (
     <>
