@@ -8,7 +8,7 @@ function Faq(){
   const accordionRefs = useRef([]);
   const accordionContainer = useRef(null)
   useEffect(() => {
-setOpenAccordion(Math.floor((Math.random() * 3)))
+setOpenAccordion(Math.floor((Math.random() * 5)))
   }, [])
   const handleAccordionClick = (index) => {
     console.log(openAccordion, index);
@@ -60,75 +60,85 @@ return <div className="accorder">
    <div className={`accordion__item  ${openAccordion === 0 ? "open" : ""} `} style={{"--index" : 1}} ref={(el) => (accordionRefs.current[0] = el)}> 
       <div className="accordion__header"     onClick={() => handleAccordionClick(0)}>
       <p className="accordion__number">01</p>
-            <p className="accordion__name">Do We Cover Champions League</p>
+            <p className="accordion__name">What is this platform for?</p>
             <p className="plus-minus">{ openAccordion === 0 ? 
             <BiPlus size={20}/> : <BiMinus />}</p>
       </div>
       <div className="accordion__details">
       <ul>
               <li>
-                The current tallest building in the world is the Burj Khalifa,
-                located in Dubai, United Arab Emirates.
+              Our platform is designed to help writers,Bloggers of all skill levels improve their writing abilities and connect with other writers and writing enthusiasts.
               </li>
-              <li>
-                It stands at a height of 828 meters (2,716 feet) tall and has
-                163 floors.
-              </li>
-              <li>
-                The building took six years to construct and was completed in
-                2010.
-              </li>
+          
             </ul>
       </div>
       </div>
    <div className={`accordion__item  ${openAccordion === 1 ? "open" : ""} `} style={{"--index" : 2}}  ref={(el) => (accordionRefs.current[1] = el)}>
       <div className="accordion__header"     onClick={() => handleAccordionClick(1)}>
       <p className="accordion__number">02</p>
-            <p className="accordion__name">Do We Cover Premier League</p>
+            <p className="accordion__name">How can I get started on the platform?</p>
             <p className="plus-minus">{ openAccordion === 1 ? 
             <BiPlus size={20}/> : <BiMinus />}</p>
       </div>
       <div className="accordion__details">
       <ul>
               <li>
-                The current tallest building in the world is the Burj Khalifa,
-                located in Dubai, United Arab Emirates.
+              Simply create an account on our platform, and you can start posting your writing, providing feedback on others' writing, and joining writing groups and discussions.
               </li>
-              <li>
-                It stands at a height of 828 meters (2,716 feet) tall and has
-                163 floors.
-              </li>
-              <li>
-                The building took six years to construct and was completed in
-                2010.
-              </li>
+           
             </ul>
       </div>
    </div>
    <div className={`accordion__item   ${openAccordion === 2 ? "open" : ""}` } style={{"--index" : 3}}  ref={(el) => (accordionRefs.current[2] = el)}> 
       <div className="accordion__header"     onClick={() => handleAccordionClick(2)}>
       <p className="accordion__number">03</p>
-            <p className="accordion__name">Do We Cover World Cup Also</p>
+            <p className="accordion__name">What kinds of writing can I post?</p>
             <p className="plus-minus">{ openAccordion === 2 ? 
             <BiPlus size={20}/> : <BiMinus />}</p>
       </div>
       <div className="accordion__details">
       <ul>
               <li>
-                The current tallest building in the world is the Burj Khalifa,
-                located in Dubai, United Arab Emirates.
+              You can post your write-ups under various categories that are specified on the platform that suites the content given
               </li>
-              <li>
-                It stands at a height of 828 meters (2,716 feet) tall and has
-                163 floors.
-              </li>
-              <li>
-                The building took six years to construct and was completed in
-                2010.
-              </li>
+           
             </ul>
       </div>
    </div>
+   <div className={`accordion__item   ${openAccordion === 3 ? "open" : ""}` } style={{"--index" : 4}}  ref={(el) => (accordionRefs.current[3] = el)}> 
+      <div className="accordion__header"     onClick={() => handleAccordionClick(3)}>
+      <p className="accordion__number">04</p>
+            <p className="accordion__name">Are there writing contests or challenges?</p>
+            <p className="plus-minus">{ openAccordion === 3 ? 
+            <BiPlus size={20}/> : <BiMinus />}</p>
+      </div>
+      <div className="accordion__details">
+      <ul>
+              <li>
+              Yes, we regularly host writing contests and challenges for our users. These challenges offer opportunities to showcase your writing skills, win prizes, and gain recognition in the writing community.
+              </li>
+           
+            </ul>
+      </div>
+   </div>
+   <div className={`accordion__item   ${openAccordion === 4 ? "open" : ""}` } style={{"--index" : 5}}  ref={(el) => (accordionRefs.current[4] = el)}> 
+      <div className="accordion__header"     onClick={() => handleAccordionClick(4)}>
+      <p className="accordion__number">05</p>
+            <p className="accordion__name">Can I get feedback on my writing?</p>
+            <p className="plus-minus">{ openAccordion === 4 ? 
+            <BiPlus size={20}/> : <BiMinus />}</p>
+      </div>
+      <div className="accordion__details">
+      <ul>
+              <li>
+              Yes! Our platform provides opportunities for writers to receive feedback on their work. You can post your writing in dedicated feedback forums or private groups, where other writers and editors can offer constructive criticism and advice.
+              </li>
+             
+            </ul>
+      </div>
+   </div>
+   
+   
 </div>
 </div>
 }

@@ -1,0 +1,170 @@
+.litenote-browse-stories {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+.litenote-browse-stories h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease;
+  }
+  
+  .litenote-browse-category-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .sola{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .litenote-browse-category-filter label {
+    margin-right: 10px;
+    font-weight: 500;
+    animation: slideInLeft 0.8s ease;
+  }
+  
+  .litenote-browse-category-filter select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    animation: slideInRight 0.8s ease;
+  }
+  
+  .litenote-browse-search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .litenote-browse-search-bar input[type="text"] {
+    padding: 10px 15px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    flex: 1;
+    max-width: 500px;
+    animation: slideInLeft 0.8s ease;
+  }
+  
+  .litenote-browse-search-bar button {
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ccc;
+    background-color: #ff5e62;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    animation: slideInRight 0.8s ease;
+  }
+  
+  .litenote-browse-search-bar button:hover {
+    background-color: #ff4044;
+  }
+  
+  .litenote-browse-story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .litenote-browse-story-card {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    animation: slideUp 0.5s ease;
+  }
+  
+  .litenote-browse-story-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .litenote-browse-story-card p {
+    color: #666;
+  }
+  
+  .litenote-browse-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease;
+  }
+  
+  .litenote-browse-pagination button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff5e62;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 10px;
+  }
+  
+  .litenote-browse-pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .litenote-browse-pagination button:not(:disabled):hover {
+    background-color: #ff4044;
+  }
+  
+  .litenote-browse-pagination span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

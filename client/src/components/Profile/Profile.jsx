@@ -8,14 +8,13 @@ import ContextMenu from "../common/ContextMenu"
 import useWindowSize from "../../hooks/useWindowSize"
 import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
 const Profile = () => {
 const {width, height} = useWindowSize()
 const [contextMenu, setContextMenu] = useState()
 const fireClick = (e) => {
 updateMenuPosition(e.clientX, e.clientY)
 contextMenu.current.style.visibility = "visible"
-  // shareModal.current.showModal()
   }
   const updateMenuPosition = (x, y) => {
 const maxTopValue = height - contextMenu.current.offsetHeight;
@@ -41,7 +40,6 @@ const [shareModal, setShareModal] = useState()
   }
   useEffect(() => {
     if (contextMenu) {
-      console.log("okay")
       window.addEventListener('scroll', () => {
         contextMenu.current.style.visibility = "hidden";
       });
@@ -76,14 +74,18 @@ const [shareModal, setShareModal] = useState()
         {/* Dynamically generate user's stories here  */}
        <StoryCard  shareModal={shareModal} fireClick={fireClick}/>
        <ContextMenu
+       contextMenu={contextMenu}
+       shareModal={shareModal}
                   setContextMenu={setContextMenu}
                   contextMenuData={[
                   {id : 1, icon : <FaShareAlt />
                   , label : "Share"},
                   {id : 2, icon : <FaBookmark />
                   , label : "Bookmark"},
-                  {id : 3, icon : <FaTimes />
-                  , label : "Close"}
+                  {id : 3, icon : <FaTimes/>
+                  , label : "Close"},
+                  {id : 4, icon : <FaRegThumbsUp />
+                  , label : "Like Story"}
 ]} />
          {/* Add more story cards as needed  */}
       </div>

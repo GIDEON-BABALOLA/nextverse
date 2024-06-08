@@ -5,6 +5,10 @@ import { FaTimes } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
+import { FaWhatsappSquare } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6"
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare } from "react-icons/fa";
 import "../../styles/components/common/share.css"
 const Share = ( { share, shareModal}) => {
 const [text, setText] = useState(false)
@@ -43,11 +47,13 @@ setText(!text)
                     </button>
                 </div>
                 <span className="litenote-share-social-icons">
-                <FaFacebookSquare
-                size={25} /><FaTwitter
-                size={25}  /><FaInstagram 
-                size={25} 
-                />
+                <FaFacebookSquare style={{color : " #4267B2"}}
+                size={37} />
+                <FaTwitterSquare  size={40} style={{color : "#1DA1F2"}} />
+                <FaInstagramSquare  size={40} style={{color : "#E1306C"}} />
+                
+              
+                <FaWhatsappSquare size={40} style={{color : "#25D366"}} />
                 </span>
             
             </div>

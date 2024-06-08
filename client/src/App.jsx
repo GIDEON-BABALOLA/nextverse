@@ -7,6 +7,7 @@ import Publish from './Pages/Publish';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import ProfilePage from './Pages/Profile';
+import BrowsePage from "./Pages/Browse"
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
 <Route index element={<Home />} />
 <Route path="publish" element={<Publish />} />
 <Route path="profile" element={< ProfilePage/>}/>
+<Route path="browse" element={< BrowsePage/>}/>
   </Route>
   <Route path="login" element={<LoginPage />} />
 <Route path="register" element={<RegisterPage />} />

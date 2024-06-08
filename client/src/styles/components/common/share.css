@@ -15,8 +15,6 @@
     display: flex;
     justify-content: space-around;
     padding: 2%;
-     color : #8F8F8F;
-   
      margin-top: 2%;
      cursor : pointer;
 }

@@ -1,10 +1,29 @@
 import "../../styles/components/common/context.css"
 import { useRef, useEffect } from "react"
-const ContextMenu = ({ contextMenuData, setContextMenu}) => {
+const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}) => {
     const context = useRef()
     useEffect(() => {
         setContextMenu(context)
     }, [setContextMenu])
+    const openShare = (e) => {
+        switch (e.target.innerText) {
+            case "Share":
+                     shareModal.current.showModal()
+                break;
+                case "Bookmark":
+                
+                break;
+                case "Close":
+                    console.log("dave")
+                    console.log( contextMenu.current.style.visibility )
+                    contextMenu.current.style.visibility = "hidden"
+                    console.log("why")
+                break;
+        
+            default:
+                break;
+        }
+    }
   return (
     <>    
         <ul className="litenote-context" 
@@ -22,7 +41,7 @@ const ContextMenu = ({ contextMenuData, setContextMenu}) => {
         ref={context}>
         {
             contextMenuData.map(((item, id) => (
-                <li className="litenote-context-link" key={id}>
+                <li className="litenote-context-link" key={id} onClick={openShare} data-name={item.label}>
                     {item.icon}<span className="litenote-context-label">{item.label}</span>
                 </li>
             
