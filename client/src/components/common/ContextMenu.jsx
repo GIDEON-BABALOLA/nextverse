@@ -1,6 +1,8 @@
 import "../../styles/components/common/context.css"
 import { useRef, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}) => {
+    const navigate = useNavigate()
     const context = useRef()
     useEffect(() => {
         setContextMenu(context)
@@ -10,8 +12,14 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}
             case "Share":
                      shareModal.current.showModal()
                 break;
+            case "Close Options" : 
+            contextMenu.current.style.visibility = "hidden"
+            break;
                 case "Bookmark":
                 
+                break;
+                case "Dashboard":
+                navigate("/dashboard/analytics")
                 break;
                 case "Close":
                     console.log("dave")

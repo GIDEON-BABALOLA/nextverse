@@ -88,6 +88,18 @@ const time = countWordsAndEstimateReadingTime(content)
 }
 }
 //To Upload The Story Picture
+const uploadNow = async(req, res) => {
+    console.log("dave")
+    try{
+        console.log(req.file)
+        if(!req.file){
+            throw new userError("Pls Choose a video, or multiple videos To Upload, maximum of two", 400)
+        }
+        res.status(200).json({"message" : "success"})
+    }catch(err){
+        console.log(err)
+    }
+}
 const uploadStoryPicture = async (req, res) => {
     const { id } = req.params
     try{
@@ -396,5 +408,6 @@ module.exports = {
     bookmarkAStory,
     unBookmarkAStory,
     likeAStory,
-    commentAStory
+    commentAStory,
+    uploadNow
 }

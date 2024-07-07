@@ -14,3 +14,19 @@ html, body, #root {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f8f8;
   }
+  .insta-kid{
+    color: radial-gradient(
+      circle at 30% 107%, #fdf497 0%, 
+      #fdf497 5%, #fd5949 45%,
+      #d6249f 60%,#285AEB 90%
+  );;
+  }
+
+  .profile-photo-home{
+    border-radius:50%;
+   width: 3%;
+   cursor: pointer;
+   /* height: 2.5rem; */
+
+    
+ }

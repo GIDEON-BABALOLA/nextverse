@@ -9,7 +9,9 @@ import useWindowSize from "../../hooks/useWindowSize"
 import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { FaTimes, FaUserAlt, FaRegThumbsUp } from "react-icons/fa";
+import Toast from "../common/Toast"
 const Profile = () => {
+const [showToast, setShowToast] = useState(false)
 const {width, height} = useWindowSize()
 const [contextMenu, setContextMenu] = useState()
 const fireClick = (e) => {
@@ -25,7 +27,9 @@ contextMenu.current.style.top = `${Math.min(maxTopValue, y)}px`;
 const [shareModal, setShareModal] = useState()
   const username = "Chris"
   const shareRef = useRef()
-  useEffect(() => {
+  const toastRef = useRef()
+  const toastProgress = useRef()
+    useEffect(() => {
     setShareModal(shareRef)
   }, [setShareModal])
     const closeContextMenu  = (e) => {
@@ -56,13 +60,14 @@ const [shareModal, setShareModal] = useState()
 
   return (
     <>
+<Toast toastRef={toastRef} toastProgress={toastProgress}/>
         <section className="litenote-profile-user-profile" onClick={closeContextMenu}>
         <Share  share={shareRef} shareModal={shareModal}/>
   <div className="litenote-profile-container">
     <div className="litenote-profile-header">
    <Avatar />
       <div className="litenote-profile-info">
- <Bio />
+ <Bio toastRef={toastRef} toastProgress={toastProgress}/>
         <div className="litenote-profile-stats">
      <Stats />
         </div>

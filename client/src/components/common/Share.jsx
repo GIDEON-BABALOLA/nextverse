@@ -50,7 +50,7 @@ setText(!text)
                 <FaFacebookSquare style={{color : " #4267B2"}}
                 size={37} />
                 <FaTwitterSquare  size={40} style={{color : "#1DA1F2"}} />
-                <FaInstagramSquare  size={40} style={{color : "#E1306C"}} />
+                <FaInstagramSquare  size={40} style={{color : ""}} className="insta-kid" />
                 
               
                 <FaWhatsappSquare size={40} style={{color : "#25D366"}} />

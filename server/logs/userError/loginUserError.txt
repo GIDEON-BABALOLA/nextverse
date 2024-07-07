@@ -76,3 +76,7 @@
 20240518	20:49:42	3e4309d9-8091-4fe3-b8c3-736d88ba429c	userError: User Does Not Exist
 20240518	20:49:43	df0c0d5e-8e59-4eed-ba2e-bf205bb24dd4	userError: User Does Not Exist
 20240525	21:46:46	49e40e84-6982-40fa-9df8-ac58bcde76cd	userError: User Does Not Exist
+20240618	22:35:37	d3f6f748-224f-4cb3-8b88-751c2571090a	userError: Please Provide An Email And A Password
+20240618	22:35:39	e1c8bf1a-583b-4911-ab3b-7fd456e6647b	userError: Please Provide An Email And A Password
+20240618	22:36:35	02f10b4c-783a-408f-94c9-0b242a5fee33	userError: Please Provide An Email And A Password
+20240618	22:36:36	b029c9fd-41be-4f0b-bfae-1ffe65fcf6e1	userError: Please Provide An Email And A Password

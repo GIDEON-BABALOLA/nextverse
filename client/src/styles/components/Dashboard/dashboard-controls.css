@@ -1,0 +1,45 @@
+
+     .litenote-dashboard-top{
+        display: flex;
+        justify-content: end;
+        gap:2rem;
+        
+        
+      }
+       .litenote-dashboard-top button{
+        display: none;
+      }
+      .litenote-dashboard-theme-toggler{
+       background: var(--color-light);
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       height: 1.6rem;
+       width:3.2rem;
+       cursor: pointer;
+       border-radius: var(--border-radius-1);
+      }
+      .litenote-dashboard-theme-toggler{
+        
+      font-size: 1.2rem;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+      .litenote-dashboard-theme-toggler span.active{
+     background: var(--color-primary);
+     color: #fff;
+     border-radius: var(--border-radius-1);
+      }
+  .litenote-dashboard-top .profile{
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+      }
+      .litenote-dashboard-profile-photo{
+        border-radius:50%;
+       width: 100%;
+       height: 2.5rem;
+      }

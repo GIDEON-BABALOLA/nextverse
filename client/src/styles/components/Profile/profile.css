@@ -160,6 +160,30 @@
     margin-top: 20px;
     transition: background-color 0.3s ease-in-out;
   }
+  .follow {
+    border: none;
+    outline: none;
+    background: transparent;
+    background-color: var(--clr-accent);
+    padding: 5px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0%;
+    /* font-size: 10px; */
+    margin-bottom: 0%;
+    transform: scale(0.7);
+
+    /* font-weight:bolder; */
+  }
+  .follow-text{
+   
+    transform: scale(10%);
+  }
+  .follow:active{
+    transform: scale(0.5);
+  }
   
   .litenote-profile-read-more:hover {
     background-color:white;
