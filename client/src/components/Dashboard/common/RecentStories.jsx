@@ -29,12 +29,26 @@ category : "Non Friction",
 date : "11/28/2024",
 readTime : "8mins"   
     },
+    {
+        title : "The Mythical Realm",
+        author : "Dora Cardie",
+        category : "Friction",
+        date : "7/28/2024",
+        readTime : "10mins"
+            }, 
+            {
+        title : "The Science Behind Exercise",
+        author : "itness Zone",
+        category : "Non Friction",
+        date : "11/28/2024",
+        readTime : "8mins"   
+            },
 ]
 const RecentStories = () => {
   return (
     <div className="litenote-dashboard-recent-stories">
     <h2  className="litenote-dashboard-h-two"style={{fontWeight : 900, fontSize : "20px"}}>Recent Stories</h2>
-    <table>
+    <table >
         <thead className="table-heading-dash">
             <tr>
                 <th>Title</th>

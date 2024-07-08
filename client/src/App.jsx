@@ -8,15 +8,19 @@ import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import ProfilePage from './Pages/Profile';
 import BrowsePage from "./Pages/Browse"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import  DashboardPage from "./Pages/Dashboard/DashboardPage"
 import AnalyticsPage from "./Pages/Dashboard/AnalyticsPage"
 import UsersPage from "./Pages/Dashboard/UsersPage"
 import SettingsPage from "./Pages/Dashboard/SettingsPage"
+import StoriesPage from './Pages/Dashboard/StoriesPage';
+import ReportsPage from './Pages/Dashboard/ReportsPage';
 import DashboardLayout from './components/Dashboard/common/DashboardLayout';
+import DashboardProfilePage from "./Pages/Dashboard/DashboardProfilePage"
 function App() {
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
+  const sidebarRef = useRef()
   return (
     <>
 <Routes>
@@ -32,11 +36,14 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
 <Route path="browse" element={< BrowsePage/>}/>
   </Route>
   <Route path="login" element={<LoginPage />} />
-  <Route path="dashboard" element={<DashboardLayout />}>
+  <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef}/>}>
           <Route index element={<DashboardPage />}/>
-          <Route path="analytics" element={<AnalyticsPage/>}/>
+          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef}/>}/>
           <Route path="users" element={<UsersPage/>}/>
           <Route path="settings" element={<SettingsPage/>}/>
+          <Route path="stories" element={<StoriesPage/>}/>
+          <Route path="reports" element={<ReportsPage/>}/>
+          <Route path="profile" element={<DashboardProfilePage/>}/>
         </Route>
 
 <Route path="register" element={<RegisterPage />} />

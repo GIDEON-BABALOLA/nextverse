@@ -60,7 +60,8 @@ contextMenu.current.style.visibility = "visible"
      
       </div>
     </nav>
-    <img onClick={showLoggedInUserOptions}
+    <img 
+    onClick={showLoggedInUserOptions}
 className="profile-photo-home"
 src={avatar}></img>
 <ContextMenu 

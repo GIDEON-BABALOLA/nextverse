@@ -1,5 +1,4 @@
 import { 
-    MdAnalytics, 
   } from 'react-icons/md';
   import "../../../styles/components/Dashboard/analytics-card.css"
 const AnalyticsProgress = ({cx, cy, r}) => {

@@ -37,7 +37,7 @@ update : " I would really appreciate if i can sell my books on this Platfor"
                 <img  className="litenote-dashboard-profile-photo" src={content.photo} alt="people image" />
             </div>
             <div className="litenote-dashboard-message">
-                <p><b>{content.name}</b>{content.update}</p>
+                <div><b>{content.name}</b>{content.update}</div>
                 <small className="litenote-dashboard-text-muted">2 minutes ago</small>
             </div>
             </div>
