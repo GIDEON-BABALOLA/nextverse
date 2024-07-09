@@ -3,9 +3,8 @@ import { FaHome } from 'react-icons/fa';
 import { Link, useParams } from "react-router-dom"
 import "../../../styles/components/Dashboard/sidebar.css"
 import logo from "../../../../src/assets/litenote.png"
-import { useRef, useEffect } from 'react';
-const SideBar = ({sidebarRef}) => {
-   const linkRef = useRef()
+import {  useEffect } from 'react';
+const SideBar = ({sidebarRef, dashboardToast, setDashboardToast}) => {
    const currentPage = useParams();
    // console.log(linkRef.current.innerText)
    const currentUrl = Object.values(currentPage)[0].split("/")[1]
@@ -13,17 +12,15 @@ const SideBar = ({sidebarRef}) => {
 sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 sidebarRef.current.style.display = "block";
    }
-   useEffect(() => {
-switch (linkRef.current.innerText) {
-   case "Dashboard":
-      console.log("gideon")
-      break;
-
-   default:
-      console.log("dave")
-      break;
-}
-   }, [currentUrl])
+   const clickSidebarMenu = () => {
+      setDashboardToast(true)
+   }
+   const dave = () => {
+      setDashboardToast(false)
+   }
+   useEffect(()=> {
+clickSidebarMenu()
+   }, [currentUrl] )
   return (
 <>
 <aside className="litenote-sidebar-aside" ref={sidebarRef} >
@@ -50,7 +47,9 @@ switch (linkRef.current.innerText) {
         </Link>
                       
                         
-                        <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}`} >
+                        <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}`} 
+                           onClick={dave}
+                        >
                         
                         <MdGroups size={24} />
 
@@ -58,34 +57,46 @@ switch (linkRef.current.innerText) {
                         </Link>
 
                         <Link  to="/dashboard/analytics"  className={`sidebar-links ${currentUrl === "analytics" && "active"}`}
-                        
-                          ref={linkRef}>
+                        onClick={dave}
+                        >
                         <MdBarChart size={24} />
                            <h3 className="litenote-dashboard-h-three">Analytics</h3>
                         </Link>
-                        <Link to="/dashboard/stories" className={`sidebar-links ${currentUrl === "stories" && "active"}`} >
+                        <Link to="/dashboard/stories" className={`sidebar-links ${currentUrl === "stories" && "active"}`} 
+                        
+                        onClick={dave}>
                         <MdAutoStories size={24} />
 
                            <h3 className="litenote-dashboard-h-three">Stories</h3>
                         </Link>
-                        <Link to="/dashboard/profile" className={`sidebar-links ${currentUrl === "profile" && "active"}`} >
+                        <Link to="/dashboard/profile" className={`sidebar-links ${currentUrl === "profile" && "active"}`} 
+                        
+                        onClick={dave}>
                         <MdPersonOutline size={24} />
                            <h3 className="litenote-dashboard-h-three">Profile</h3>
                         </Link>
-                        <Link to="/dashboard/reports" className={`sidebar-links ${currentUrl === "reports" && "active"}`} >
+                        <Link to="/dashboard/reports" className={`sidebar-links ${currentUrl === "reports" && "active"}`} 
+                        
+                        onClick={dave}>
                         <MdReport size={24} />
                            <h3 className="litenote-dashboard-h-three">Reports</h3>
                         </Link>
-                        <Link to="/dashboard/email" className={`sidebar-links ${currentUrl === "messages" && "active"}`}>
+                        <Link to="/dashboard/email" className={`sidebar-links ${currentUrl === "messages" && "active"}`}
+                        
+                        onClick={dave}>
                         <MdEmail size={24} />
                            <h3 className="litenote-dashboard-h-three">Messages</h3>
                            <span className="message-count">26</span>
                         </Link>
-                        <Link to="/dashboard/settings" className={`sidebar-links ${currentUrl === "settings" && "active"}`} >
+                        <Link to="/dashboard/settings" className={`sidebar-links ${currentUrl === "settings" && "active"}`} 
+                        
+                        onClick={dave}>
                         <MdSettings size={24} />
                            <h3 className="litenote-dashboard-h-three">Settings</h3>
                         </Link>
-                        <Link href="/dashboard/logout"  className={`sidebar-links ${currentUrl === "logout" && "active"}`}>
+                        <Link href="/dashboard/logout"  className={`sidebar-links ${currentUrl === "logout" && "active"}`}
+                           onClick={dave}
+                           >
                         <MdLogout size={24} />
                            <h3 className="litenote-dashboard-h-three">Logout</h3>
                         </Link>

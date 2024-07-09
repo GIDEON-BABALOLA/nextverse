@@ -1,8 +1,10 @@
-import React from 'react'
 
-const ReportsPage = () => {
+
+import DashboardToast from '../../components/common/DashboardToast';
+const ReportsPage = ({dashboardToast, setDashboardToast}) => {
   return (
-    <div>ReportsPage</div>
+    <div>ReportsPage
+    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/></div>
   )
 }
 

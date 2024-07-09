@@ -21,8 +21,9 @@ import AnalyticsCard from '../../components/Dashboard/common/AnalyticsCard';
 import RecentUpdates from '../../components/Dashboard/common/RecentUpdates';
 import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import StoriesAnalytics from '../../components/Dashboard/common/StoriesAnalytics';
-
-const AnalyticsPage = ({sidebarRef}) => {
+import DashboardToast from '../../components/common/DashboardToast';
+import ConnectivityToast from '../../components/common/connectivityToast';
+const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
     let time = new Date().toLocaleTimeString();
     const [timed, setTime] = useState(time)
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -36,8 +37,9 @@ const AnalyticsPage = ({sidebarRef}) => {
   return (
    <>
              <main className='analytics-page-main'>
+             <ConnectivityToast />
      <h1 className='litenote-dashboard-h-one'>Dashboard</h1>
-
+<DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
      <div className="litenote-dashboard-date">
        {/* <input type="date" /> */}
        {month[datetime.getMonth()]} {datetime.getDate()} {datetime.getFullYear()}{"   :   "}

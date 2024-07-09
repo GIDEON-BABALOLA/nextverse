@@ -64,7 +64,7 @@ contextMenu.current.style.visibility = "visible"
     onClick={showLoggedInUserOptions}
 className="profile-photo-home"
 src={avatar}></img>
-<ContextMenu 
+<ContextMenu
 
  contextMenu={contextMenu}
          setContextMenu={setContextMenu}

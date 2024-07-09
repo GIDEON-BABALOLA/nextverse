@@ -42,7 +42,7 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}
     boxShadow:'0 0 10px rgba(0, 0, 0, 0.1)' ,
     background:"white",
     position: "fixed",
-    fontSize:"16px",
+    fontSize:"18px",
     visibility: "hidden",
     fontFamily: "Poppins, sans-serif", // Corrected line
 }}

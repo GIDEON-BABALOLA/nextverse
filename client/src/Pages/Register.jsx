@@ -1,5 +1,6 @@
 import Register from "../components/Account/Register"
 import "../styles/components/Account/register.css"
+
 const RegisterPage = () => {
   return (
     <>

@@ -7,19 +7,23 @@ import Testimonial from "../components/Home/Testimonial.jsx"
 import TermsAndConditions from "../components/common/TermsAndConditions.jsx"
 import { useState, useEffect, useRef } from "react"
 import CookieConsent from "../components/common/CookieConsent.jsx"
+import ConnectivityToast from "../components/common/connectivityToast.jsx"
 
 const Home = ({ showTermsAndConditions, setShowTermsAndConditions, setShowCookieConsent, showCookieConsent}) => {
+
   const [showNewsLetter, setShowNewsLetter] = useState(null)
 const page = useRef()
 useEffect(() => {
   setTimeout(() => {
     setShowNewsLetter(!showNewsLetter)
   }, 3000);
+
 }, [])
 
   return (
     <>
     <main ref={page}>
+    <ConnectivityToast />
     <NewsletterSignup page={page}
     showNewsLetter={showNewsLetter} setShowNewsLetter={setShowNewsLetter} />
     <Intro />

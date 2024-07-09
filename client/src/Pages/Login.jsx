@@ -1,5 +1,6 @@
 import Login from "../components/Account/Login"
 import "../styles/components/Account/login.css"
+
 const LoginPage = () => {
   return (
     <>

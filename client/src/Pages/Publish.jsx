@@ -1,5 +1,6 @@
 import Publish from "../components/Publish/Publish"
 import "../styles/components/Publish/publish.css"
+
 const PublishPage = () => {
   return (
   <>

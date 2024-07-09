@@ -21,7 +21,9 @@ function App() {
   const [showTermsAndConditions, setShowTermsAndConditions] = useState(null)
   const [showCookieConsent, setShowCookieConsent] = useState(false)
   const sidebarRef = useRef()
+  const [dashboardToast, setDashboardToast] = useState(false)
   return (
+    
     <>
 <Routes>
   <Route path="/" element={<Layout 
@@ -36,14 +38,14 @@ showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setSh
 <Route path="browse" element={< BrowsePage/>}/>
   </Route>
   <Route path="login" element={<LoginPage />} />
-  <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef}/>}>
-          <Route index element={<DashboardPage />}/>
-          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef}/>}/>
-          <Route path="users" element={<UsersPage/>}/>
-          <Route path="settings" element={<SettingsPage/>}/>
-          <Route path="stories" element={<StoriesPage/>}/>
-          <Route path="reports" element={<ReportsPage/>}/>
-          <Route path="profile" element={<DashboardProfilePage/>}/>
+  <Route path="dashboard" element={<DashboardLayout sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}>
+          <Route index element={<DashboardPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="analytics" element={<AnalyticsPage sidebarRef={sidebarRef} dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="users" element={<UsersPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="settings" element={<SettingsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="stories" element={<StoriesPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="reports" element={<ReportsPage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
+          <Route path="profile" element={<DashboardProfilePage dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>}/>
         </Route>
 
 <Route path="register" element={<RegisterPage />} />

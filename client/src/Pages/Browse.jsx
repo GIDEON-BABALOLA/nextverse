@@ -10,6 +10,7 @@ const BrowsePage = () => {
       <h2>Browse Stories</h2>
       <SearchFilter />
       <SearchBar  />
+      
  
       
    

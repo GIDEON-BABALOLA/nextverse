@@ -12,7 +12,7 @@
 --color-primary-variant:#111e88;
 --color-dark-variant:#677483;
 --color-background:#f6f6f9;
-
+--toast-background:#eefafd;
 
 --card-border-radius:2rem;
 --border-radius-1:0.4rem;
@@ -27,6 +27,7 @@
 
     /*    Dark Mode */
     .dark-theme-variables{
+        --toast-background:#181a1e;
         --color-background:#181a1e;
         --color-white:#202528;
         --color-dark:#edeffd;
@@ -180,7 +181,10 @@ a{
 }
 
 
-
+.analytics-page-main{
+    margin-top: 2rem;
+    padding: 0.1rem;
+}
 
 
 
@@ -197,7 +201,7 @@ a{
         position: fixed;
         left: -100%;
         background: var(--color-white);
-        width: 18rem;
+        width: 20rem;
         z-index: 3;
         box-shadow: 1rem 3rem 4rem var(--color-light) ;
         height: 100vh;
