@@ -22,7 +22,7 @@ const Counter = ({ end }) => {
     return () => clearInterval(counter); // Cleanup interval on component unmount
   }, [end]);
 
-  return <span>{count}</span>;
+  return <div>{count}</div>;
 };
 
 export default Counter;

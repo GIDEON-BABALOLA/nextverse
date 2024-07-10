@@ -18,6 +18,8 @@ sidebarRef.current.style.display = "block";
    }
    const dave = () => {
       setDashboardToast(false)
+      sidebarRef.current.classList.add("litenote-sidebar-aside-close")
+sidebarRef.current.style.display = "block";
    }
    useEffect(()=> {
 clickSidebarMenu()
@@ -48,7 +50,7 @@ clickSidebarMenu()
         </Link>
                       
                         
-                        <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}`} 
+                        <Link to="/dashboard/users" className={`sidebar-links ${currentUrl === "users" && "active"}` } 
                            onClick={dave}
                         >
                         

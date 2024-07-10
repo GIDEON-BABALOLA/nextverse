@@ -53,7 +53,7 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
      <AnalyticsCard className={"litenote-dashboard-Stories"}
       r={36}
     cardPercent={"81%"}
-    cardTotal={"25,200"}
+    cardTotal={"25200"}
     cardTitle={"Total Stories"}
     cx={38}
     cy={38}
@@ -67,7 +67,7 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
 <AnalyticsCard 
     className={"litenote-dashboard-authors"}
     cardPercent={"88%"}
-    cardTotal={"17,260"}
+    cardTotal={"17260"}
     cardTitle={"Total Authors"}
     cx={38}
     cy={38}
@@ -79,7 +79,7 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
 <AnalyticsCard
 className={"litenote-dashboard-views"}
 cardPercent={"79%"}
-cardTotal={"3,500"}
+cardTotal={"3500"}
 cardTitle={"Total Views"}
 cx={38}
 cy={38}
@@ -89,7 +89,7 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
 <AnalyticsCard 
     className={"litenote-dashboard-likes"}
     cardPercent={"79%"}
-    cardTotal={"7,500"}
+    cardTotal={"7500"}
     cardTitle={"Total likes"}
     cx={38}
     cy={38}
@@ -100,7 +100,7 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
 <AnalyticsCard 
     className={"litenote-dashboard-users"}
     cardPercent={"79%"}
-    cardTotal={"8,900"}
+    cardTotal={"8900"}
     cardTitle={"Total Users"}
     cx={38}
     cy={38}
@@ -111,7 +111,7 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
 <AnalyticsCard 
     className={"litenote-dashboard-comments"}
     cardPercent={"79%"}
-    cardTotal={"4,200"}
+    cardTotal={"4200"}
     cardTitle={"Total Comments"}
     cx={38}
     cy={38}

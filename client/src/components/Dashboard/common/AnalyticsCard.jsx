@@ -1,6 +1,7 @@
 import { 
   } from 'react-icons/md';
   import "../../../styles/components/Dashboard/analytics-card.css"
+  import Counter from "../../Profile/Counter"
 const AnalyticsProgress = ({cx, cy, r}) => {
   <svg className='special-icon-dashboard'>
   <circle cx={cx} cy={cy} r={r}></circle>
@@ -16,7 +17,7 @@ const AnalyticsCard = ({cardTitle, cardTotal, cx, cy, r, cardPercent, className,
    <div className="litenote-dashboard-middle">
     <div className="litenote-dashboard-left">
          <h3 className='litenote-dashboard-h-three'>{cardTitle}</h3> 
-         <h1 className='litenote-dashboard-h-one'>{cardTotal}</h1> 
+         <h1 className='litenote-dashboard-h-one'><Counter end={parseInt(cardTotal)}/></h1> 
         </div>
 <div className="litenote-dashboard-progress">
 <AnalyticsProgress />
