@@ -6,7 +6,6 @@ import { BiWifiOff } from "react-icons/bi"
 import useInternetMode from "../../hooks/useInternetMode"
 const ConnectivityToast = () => {
   const { online, offline } = useInternetMode()
-  console.log(offline)
   const toastWrapper = useRef()
   const toastRef = useRef()
   const titleRef = useRef()

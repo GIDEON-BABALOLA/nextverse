@@ -32,7 +32,14 @@
     text-decoration: none;
     cursor: pointer;
 }
-
+@media screen and (max-width:1200px) {
+    .litenote-dashboard-slide-up{
+        flex-direction: column;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        gap: 15px;
+    }
+}
 @media screen and (max-width:768px) {
     .litenote-dashboard-slide-up{
         flex-direction: column;

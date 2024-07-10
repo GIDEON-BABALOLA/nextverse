@@ -6,13 +6,6 @@ import {
   MdBarChart, 
   MdInsights, 
   MdStackedLineChart, 
-  MdMenu, 
-  MdLightMode, 
-  MdDarkMode, 
-  MdMenuBook, 
-  MdVisibility, 
-  MdFolderShared, 
-  MdAdd, 
   MdGroups,
 } from 'react-icons/md';
 import { FaCommentDollar} from "react-icons/fa"
@@ -23,9 +16,11 @@ import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
 import StoriesAnalytics from '../../components/Dashboard/common/StoriesAnalytics';
 import DashboardToast from '../../components/common/DashboardToast';
 import ConnectivityToast from '../../components/common/connectivityToast';
+import RotationLoader from '../../components/Loaders/RotationLoader';
 const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
     let time = new Date().toLocaleTimeString();
     const [timed, setTime] = useState(time)
+    const [loadPage, setLoadPage] = useState(true)
     const month = ["january", "febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const datetime = new Date()
     useEffect(() => {
@@ -33,13 +28,21 @@ const AnalyticsPage = ({sidebarRef, dashboardToast, setDashboardToast}) => {
             var newTime = new Date().toLocaleTimeString()
         setTime(newTime)
         }, 1000);
+        setInterval(() => {
+          setLoadPage(false)
+        }, 2000)
     }, [])
   return (
    <>
+   { loadPage ? 
+    <>
+    <RotationLoader /> 
+    </>
+   :<>
              <main className='analytics-page-main'>
              <ConnectivityToast />
+             <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast} loadPage={loadPage}/>
      <h1 className='litenote-dashboard-h-one'>Dashboard</h1>
-<DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
      <div className="litenote-dashboard-date">
        {/* <input type="date" /> */}
        {month[datetime.getMonth()]} {datetime.getDate()} {datetime.getFullYear()}{"   :   "}
@@ -127,11 +130,16 @@ cardIcon={<MdInsights className='icon-dashboard' size={20}/>}
      <DashboardHeader sidebarRef={sidebarRef} />
       {/* <!--   end of top --> */}
  <RecentUpdates />
+ 
      {/* <!--  ----------------END OF UPDATES---------- --> */}
      
    <StoriesAnalytics />
     </div>
+    </>
+    
+   }
    </>
+   
   )
 }
 

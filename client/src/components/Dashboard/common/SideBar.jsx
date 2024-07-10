@@ -13,7 +13,8 @@ sidebarRef.current.classList.add("litenote-sidebar-aside-close")
 sidebarRef.current.style.display = "block";
    }
    const clickSidebarMenu = () => {
-      setDashboardToast(true)
+         setDashboardToast(true)   
+     
    }
    const dave = () => {
       setDashboardToast(false)
@@ -41,7 +42,7 @@ clickSidebarMenu()
                     <FaHome size={24} />
                            <h3 className="litenote-dashboard-h-three">Home</h3>
         </Link>
-                    <Link to="/dashboard" className='sidebar-links'>
+                    <Link to="/dashboard/dashboard"  className={`sidebar-links ${currentUrl === "dashboard" && "active"}`}>
                     <MdGridView size={24} />
                            <h3 className="litenote-dashboard-h-three">Dashboard</h3>
         </Link>

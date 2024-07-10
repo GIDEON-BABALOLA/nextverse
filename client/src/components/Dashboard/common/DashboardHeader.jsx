@@ -13,6 +13,7 @@ const DashboardHeader = ({sidebarRef}) => {
  themeRef.current.querySelector('span:nth-child(2)').classList.toggle('active');
   }
   const showSidebar = () => {
+    console.log("golang")
        sidebarRef.current.classList.remove("litenote-sidebar-aside-close")
  sidebarRef.current.style.display='block';
   }

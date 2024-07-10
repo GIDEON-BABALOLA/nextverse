@@ -1,9 +1,34 @@
 import DashboardToast from "../../components/common/DashboardToast"
-const SettingsPage = ({dashboardToast, setDashboardToast}) => {
+import DashboardHeader from '../../components/Dashboard/common/DashboardHeader';
+import RotationLoader from "../../components/Loaders/RotationLoader"
+import { useState, useEffect } from "react";
+const SettingsPage = ({dashboardToast, setDashboardToast, sidebarRef}) => {
+  const [loadPage, setLoadPage] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadPage(false)
+    }, 2000);
+      }, [])
   return (
-    <div>SettingsPage
-    <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
+    <>
+    {loadPage ? 
+    <>
+    <RotationLoader />
+    </>
+     : <>
+    <main>
+   <DashboardToast dashboardToast={dashboardToast} setDashboardToast={setDashboardToast}/>
+   <h2>
+    SetttingsPage
+   </h2>
+    </main>
+
+    <div className="litenote-dashboard-right">
+    <DashboardHeader sidebarRef={sidebarRef} />
     </div>
+    </>
+    }
+    </>
   )
 }
 

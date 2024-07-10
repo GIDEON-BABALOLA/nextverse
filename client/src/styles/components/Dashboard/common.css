@@ -197,11 +197,22 @@ a{
         width: 100%;
         grid-template-columns: 1fr;
     }
+    .litenote-sidebar-aside  .sidebar .sidebar-links{
+ display: flex;
+ color: var(--color-info-dark);
+ margin-left: 3.4rem;
+ gap: 1rem;
+ align-items: center;
+ position: relative;
+ height: 3.7rem;
+ transition: all 300ms ease;
+ text-decoration: none;
+}
     .litenote-sidebar-aside{
         position: fixed;
         left: -100%;
         background: var(--color-white);
-        width: 20rem;
+        width: 30rem;
         z-index: 3;
         box-shadow: 1rem 3rem 4rem var(--color-light) ;
         height: 100vh;
@@ -211,12 +222,13 @@ a{
     }
     .litenote-sidebar-aside-close{
     left: 0%;
-    animation: closeMenu 600ms ease forwards;
+    animation: closeMenu 900ms ease forwards;
     }
     @keyframes showMenu {
         to{
             left: 0%;
         }
+        
     }
     @keyframes closeMenu {
         to{
@@ -303,4 +315,14 @@ a{
         border: none !important;
     }
     
+    }
+    @media screen and (max-width:768px) {
+        .litenote-sidebar-aside{
+  
+            width: 20rem;
+        }
+        .litenote-sidebar-aside  .sidebar .sidebar-links{
+
+            margin-left: 2rem;
+        }
     }
