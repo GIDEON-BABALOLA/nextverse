@@ -18,6 +18,14 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}
                 case "Bookmark":
                 
                 break;
+                case "Home":
+                    navigate("/")
+                    
+                break;
+                case "Settings":
+                    navigate("/dashboard/settings")
+                    
+                break;
                 case "Dashboard":
                 navigate("/dashboard/analytics")
                 break;
@@ -40,7 +48,6 @@ const ContextMenu = ({ contextMenuData, setContextMenu, shareModal, contextMenu}
     margin: 0,
     paddingLeft: 0,
     boxShadow:'0 0 10px rgba(0, 0, 0, 0.1)' ,
-    background:"white",
     position: "fixed",
     fontSize:"18px",
     visibility: "hidden",

@@ -1,4 +1,16 @@
 
+:root{
+    --context-background : white;
+    --context-link-hover : #eeeeee
+}
+
+.dark-theme-variables{
+    --context-background:#181a1e;
+    --context-link-hover :  rgba(132,139,200,0.18)
+}
+.litenote-context{
+    background-color: var(--context-background);
+}
 .litenote-context-link{
     list-style-type: none;
     padding: 0.75em 1em;
@@ -10,5 +22,5 @@
     gap: 0.75em;
 }
 .litenote-context-link:hover{
-    background: #eeeeee;
+    background: var(--context-link-hover);
 }

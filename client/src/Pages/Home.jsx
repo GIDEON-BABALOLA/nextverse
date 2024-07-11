@@ -8,7 +8,7 @@ import TermsAndConditions from "../components/common/TermsAndConditions.jsx"
 import { useState, useEffect, useRef } from "react"
 import CookieConsent from "../components/common/CookieConsent.jsx"
 import ConnectivityToast from "../components/common/connectivityToast.jsx"
-
+import { TrustedBy } from "../components/Home/TrustedBy.jsx"
 const Home = ({ showTermsAndConditions, setShowTermsAndConditions, setShowCookieConsent, showCookieConsent}) => {
 
   const [showNewsLetter, setShowNewsLetter] = useState(null)
@@ -30,6 +30,7 @@ useEffect(() => {
     <TermsAndConditions showTermsAndConditions={showTermsAndConditions} setShowTermsAndConditions={setShowTermsAndConditions}/>
     <CookieConsent setShowCookieConsent={setShowCookieConsent} showCookieConsent={showCookieConsent}/>
 <PopularStories />
+{/* <TrustedBy /> */}
 <ChatBot />
 <Faq />
 <Testimonial />
